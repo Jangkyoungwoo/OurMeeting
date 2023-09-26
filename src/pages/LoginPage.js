@@ -2,96 +2,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Cookies } from 'react-cookie';
-import styled from 'styled-components';
+import * as LoginStyle from '../style/LoginPage.styles';
 import OurMeetingIcon from '../components/OurMeetingIcon';
-
-const Login = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-const LoginHeader = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin-bottom: 40px;
-
-  & div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  & p {
-    font-family: 'Spoqa Han Sans Neo';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 18px;
-    color: #666666;
-    position: absolute;
-    bottom: -15px;
-  }
-`;
-const LoginMain = styled.div`
-  width: 90%;
-  position: relative;
-  margin-bottom: 60px;
-
-  & input {
-    background: transparent;
-    border: none;
-    border-bottom: solid 1px rgba(0, 0, 0, 0.15);
-    padding: 20px 0px 5px 0px;
-    font-size: 10pt;
-    width: 100%;
-    padding-bottom: 20px;
-  }
-  & input::placeholder {
-    color: rgba(0, 0, 0, 0.4);
-  }
-
-  & input:focus {
-    outline: none;
-    border: none;
-    border-bottom: 1.5px solid #0594ff;
-  }
-
-  & span {
-    position: absolute;
-    right: 0px;
-    bottom: -30px;
-    color: #0594ff;
-    font-family: 'Spoqa Han Sans Neo';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 30px;
-  }
-`;
-const LoginFooter = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
-  & div {
-    color: rgba(0, 0, 0, 0.3);
-    font-size: 13px;
-  }
-  & input {
-    background-color: #0594ff;
-    width: 90%;
-    padding: 15px 0px;
-    border-radius: 10px;
-    color: white;
-    border: none;
-  }
-`;
 
 const cookie = new Cookies();
 
@@ -163,41 +75,43 @@ function LoginPage() {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <Login>
-        <LoginHeader>
-          <div>
-            <OurMeetingIcon />
-            <h2>OUR MEETING</h2>
-          </div>
-          <p>회의실 예약 시스템</p>
-        </LoginHeader>
-        <LoginMain>
-          <input
-            type="text"
-            placeholder="아이디"
-            onChange={onIdHandler}
-            value={id}
-            className="login-input"
-          />
-          <br />
-          <input
-            type="password"
-            placeholder="비밀번호"
-            onChange={onPasswordHandler}
-            value={password}
-            className="login-input"
-          />
-          <span className="login-main__span">비밀번호 찾기</span>
-        </LoginMain>
-        <LoginFooter>
-          <input type="submit" onClick={onClick} value="로그인" />
-          <div>
-            <p>Made Our Meeting</p>
-          </div>
-        </LoginFooter>
-      </Login>
-    </form>
+    <LoginStyle.Div>
+      <LoginStyle.Form onSubmit={onSubmit}>
+        <LoginStyle.Login>
+          <LoginStyle.LoginHeader>
+            <div>
+              <OurMeetingIcon />
+              <h2>OUR MEETING</h2>
+            </div>
+            <p>회의실 예약 시스템</p>
+          </LoginStyle.LoginHeader>
+          <LoginStyle.LoginMain>
+            <input
+              type="text"
+              placeholder="아이디"
+              onChange={onIdHandler}
+              value={id}
+              className="login-input"
+            />
+            <br />
+            <input
+              type="password"
+              placeholder="비밀번호"
+              onChange={onPasswordHandler}
+              value={password}
+              className="login-input"
+            />
+            <span className="login-main__span">비밀번호 찾기</span>
+          </LoginStyle.LoginMain>
+          <LoginStyle.LoginFooter>
+            <input type="submit" onClick={onClick} value="로그인" />
+            <div>
+              <p>Made Our Meeting</p>
+            </div>
+          </LoginStyle.LoginFooter>
+        </LoginStyle.Login>
+      </LoginStyle.Form>
+    </LoginStyle.Div>
   );
 }
 export default LoginPage;
