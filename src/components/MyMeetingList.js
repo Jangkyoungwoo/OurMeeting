@@ -25,7 +25,6 @@ function MyMeetingList({ setMyDetailModalOpen, MydetailModalOpen }) {
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
 
   const changeAllCheck = (e) => {
-    console.log(listArr);
     if (isCheckAll === false) {
       const allArr = listArr.map((item) => item.meetingId);
       setCheckedArr(allArr);
@@ -33,7 +32,6 @@ function MyMeetingList({ setMyDetailModalOpen, MydetailModalOpen }) {
       for (let i = 0; i < listArr.length; i++) {
         listArr[i].checked = true;
       }
-      console.log(listArr);
     } else {
       setCheckedArr([]);
       setIsCheckAll(false);
@@ -65,7 +63,6 @@ function MyMeetingList({ setMyDetailModalOpen, MydetailModalOpen }) {
         meetingsId: checkedArr
       })
       .then((res) => {
-        console.log(res);
         if (window.confirm('정말 삭제 하시겠습니까?')) {
           window.location.reload();
         }
@@ -131,7 +128,6 @@ function MyMeetingList({ setMyDetailModalOpen, MydetailModalOpen }) {
         params
       })
       .then((res) => {
-        console.log(res);
         const pCount = res.data.p_MyMeetings.totalPages;
         setPageCount(pCount);
         setListArr(res.data.p_MyMeetings.content);
@@ -140,7 +136,7 @@ function MyMeetingList({ setMyDetailModalOpen, MydetailModalOpen }) {
 
   const meetingListClick = (item) => {
     setMyDetailModalOpen(true);
-    setMyMeetingID(item.meetingRoomId);
+    setMyMeetingID(item.meetingId);
     setMyMeetingName(item.name);
     setMyMeetingStart(item.start);
     setMyMeetingEnd(item.end);
@@ -217,7 +213,6 @@ function MyMeetingList({ setMyDetailModalOpen, MydetailModalOpen }) {
           </EntireMeetingStyle.ViewMeetingListTr>
         </thead>
         <EntireMeetingStyle.ColorChangeBody>
-          {console.log(checkedArr)}
           {listArr.map((item) => (
             <tr>
               <td>
@@ -262,7 +257,7 @@ function MyMeetingList({ setMyDetailModalOpen, MydetailModalOpen }) {
           ))}
         </EntireMeetingStyle.ColorChangeBody>
       </EntireMeetingStyle.ListTable>
-      <MyMeeingStyle.PagiNateDiv>
+      <EntireMeetingStyle.PagiNateDiv>
         <ReactPaginate
           previousLabel="<"
           nextLabel=">"
@@ -280,7 +275,7 @@ function MyMeetingList({ setMyDetailModalOpen, MydetailModalOpen }) {
           nextClassName="page-item"
           activeClassName="active"
         />
-      </MyMeeingStyle.PagiNateDiv>
+      </EntireMeetingStyle.PagiNateDiv>
       {MydetailModalOpen && (
         <ViewMyDetails
           setMyDetailModalOpen={setMyDetailModalOpen}
@@ -293,7 +288,10 @@ function MyMeetingList({ setMyDetailModalOpen, MydetailModalOpen }) {
         />
       )}
       {updateModalOpen && (
-        <UpdateModal setUpdateModalOpen={setUpdateModalOpen} />
+        <UpdateModal
+          setUpdateModalOpen={setUpdateModalOpen}
+          meetingId={MymeetingID}
+        />
       )}
     </EntireMeetingStyle.ViewMeeting>
   );

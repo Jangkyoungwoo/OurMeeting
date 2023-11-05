@@ -7,8 +7,10 @@ export const ViewMeeting = styled.div`
   background: #ffffff;
   border-radius: 12px;
   background-color: white;
-  padding: 20px;
-  height: 50%;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 export const ViewMeetingHeader = styled.div`
   display: flex;
@@ -106,8 +108,6 @@ export const MeetingRoomColor = styled.div`
   margin-right: 15px;
 `;
 export const PagiNateDiv = styled.div`
-  position: absolute;
-  bottom: 5px;
   left: 40%;
   .pagination {
     display: flex;

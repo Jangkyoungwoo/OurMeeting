@@ -9,7 +9,7 @@ export const List = styled.div`
   font-weight: 400;
   border: 1px solid white;
   background-color: white;
-  height: 100vh;
+  height: 100%;
 `;
 
 export const MainTitle = styled.div`

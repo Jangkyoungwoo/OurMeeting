@@ -1,162 +1,7 @@
-import styled from 'styled-components';
 import axios from 'axios';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { useEffect, useState } from 'react';
 import AutoComplete from './AutoComplete/AutoComplete';
-
-const MainDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0);
-  z-index: 10;
-  position: fixed;
-  top: 0;
-  left: 0;
-`;
-
-const Div = styled.div`
-  width: 600px;
-  height: 961px;
-  background-color: white;
-  border-radius: 10px;
-  text-align: center;
-  padding: 10px;
-  padding-top: 30px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
-`;
-
-const EntireDiv = styled.div`
-  width: 415px;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 30px 25px 20px 17px;
-`;
-const MainTitle = styled.div`
-  font-size: 24px;
-  font-weight: 700;
-`;
-const Close = styled(CloseRoundedIcon)`
-  &:hover {
-    cursor: pointer;
-  }
-`;
-const Form = styled.form`
-  margin-left: 17px;
-  margin-right: 27px;
-`;
-const UpdateDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Select = styled.select`
-  border: 0;
-  border-bottom: 1px solid #d7e3f1;
-  width: 475px;
-  height: 60px;
-  outline: 0;
-  font-size: 18px;
-  font-weight: 500;
-  &:focus {
-    border-bottom: 2px solid #0594ff;
-  }
-`;
-
-const TimeSelect = styled.select`
-  border: 0;
-  border-bottom: 1px solid #d7e3f1;
-  height: 60px;
-  width: 110px;
-  font-size: 18px;
-  font-weight: 500;
-  outline: 0;
-  &:focus {
-    border-bottom: 2px solid #0594ff;
-  }
-`;
-const TimeInput = styled.input`
-  border: 0;
-  border-bottom: 1px solid #d7e3f1;
-  width: 458px;
-  height: 60px;
-  outline: 0;
-  font-size: 18px;
-  font-weight: 500;
-  &:focus {
-    border-bottom: 2px solid #0594ff;
-  }
-  &::before {
-    content: attr(data-placeholder);
-    width: 100%;
-  }
-  &:focus::before,
-  :valid::before {
-    display: none;
-  }
-`;
-const TextArea = styled.textarea`
-  margin-top: 25px;
-  width: 544px;
-  height: 86px;
-  border: 1px solid #d7e3f1;
-  border-radius: 6px;
-  resize: none;
-  font-weight: 500;
-  font-size: 14px;
-  padding: 15px;
-  outline: 0;
-  ::placeholder {
-    color: #d7e3f1;
-  }
-  &:focus {
-    border: 2px solid #0594ff;
-  }
-`;
-
-const Btn = styled.input`
-  width: 545px;
-  height: 60px;
-  background: #0594ff;
-  border-radius: 10px;
-  font-family: 'Spoqa Han Sans Neo';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  color: #ffffff;
-  border: none;
-  margin-top: 30px;
-`;
-const TextDiv = styled.div`
-  color: #888888;
-  margin-top: 13px;
-  font-size: 14px;
-  font-weight: 500;
-  float: left;
-`;
-const StartTextDiv = styled(TextDiv)`
-  margin-bottom: 20px;
-`;
-const TextSpan = styled.span`
-  color: #888888;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  font-size: 14px;
-  font-weight: 500;
-`;
-const TextLabel = styled.label`
-  color: #888888;
-  margin-top: 21px;
-  margin-bottom: 21px;
-  font-size: 14px;
-  font-weight: 500;
-`;
+import * as UpdateModalStyle from '../style/UpdateModal.styles';
 
 // eslint-disable-next-line react/prop-types
 function UpdateModal({ setUpdateModalOpen, meetingId }) {
@@ -239,6 +84,8 @@ function UpdateModal({ setUpdateModalOpen, meetingId }) {
       });
       setMeetingEarlyVal(res.data.meeting);
       setMembersEarlyVal(res.data.members);
+      console.log(res.data.meeting);
+      console.log(res.data.members);
     } catch (error) {
       console.log(error);
     }
@@ -277,18 +124,22 @@ function UpdateModal({ setUpdateModalOpen, meetingId }) {
   }, []);
 
   return (
-    <MainDiv onClick={onCloseModal}>
-      <Div>
-        <Header>
-          <MainTitle>{inputList.inputMeetingName}</MainTitle>
-          <Close onClick={onCloseModalcon} />
-        </Header>
-        <Form>
-          <TextDiv>참석자</TextDiv>
+    <UpdateModalStyle.MainDiv onClick={onCloseModal}>
+      <UpdateModalStyle.Div>
+        <UpdateModalStyle.Header>
+          <UpdateModalStyle.MainTitle>
+            {inputList.inputMeetingName}
+          </UpdateModalStyle.MainTitle>
+          <UpdateModalStyle.Close onClick={onCloseModalcon} />
+        </UpdateModalStyle.Header>
+        <UpdateModalStyle.Form>
+          <UpdateModalStyle.TextDiv>참석자</UpdateModalStyle.TextDiv>
           <AutoComplete getAttendees={getAttendees} width="545px" />
-          <UpdateDiv>
-            <TextLabel htmlFor="meetingRoomList">회의실</TextLabel>
-            <Select
+          <UpdateModalStyle.UpdateDiv>
+            <UpdateModalStyle.TextLabel htmlFor="meetingRoomList">
+              회의실
+            </UpdateModalStyle.TextLabel>
+            <UpdateModalStyle.Select
               id="meetingRoom"
               onChange={(event) => {
                 inputList.inputMeetingRoomId = event.target.value;
@@ -305,11 +156,13 @@ function UpdateModal({ setUpdateModalOpen, meetingId }) {
                   {li.name}
                 </option>
               ))}
-            </Select>
-          </UpdateDiv>
-          <UpdateDiv>
-            <TextLabel htmlFor="meetingRoomType">회의 유형</TextLabel>
-            <Select
+            </UpdateModalStyle.Select>
+          </UpdateModalStyle.UpdateDiv>
+          <UpdateModalStyle.UpdateDiv>
+            <UpdateModalStyle.TextLabel htmlFor="meetingRoomType">
+              회의 유형
+            </UpdateModalStyle.TextLabel>
+            <UpdateModalStyle.Select
               id="meetingType"
               onChange={(event) => {
                 inputList.inputType = event.target.value;
@@ -321,23 +174,25 @@ function UpdateModal({ setUpdateModalOpen, meetingId }) {
               {gType.map((typ) => (
                 <option value={typ}>{typ}</option>
               ))}
-            </Select>
-          </UpdateDiv>
-          <UpdateDiv>
-            <TextSpan>회의 날짜</TextSpan>
-            <TimeInput
+            </UpdateModalStyle.Select>
+          </UpdateModalStyle.UpdateDiv>
+          <UpdateModalStyle.UpdateDiv>
+            <UpdateModalStyle.TextSpan>회의 날짜</UpdateModalStyle.TextSpan>
+            <UpdateModalStyle.TimeInput
               type="date"
               data-placeholder={inputList.inputDate}
               onChange={(event) => {
                 inputList.inputDate = event.target.value;
               }}
             />
-          </UpdateDiv>
-          <UpdateDiv>
-            <TextDiv htmlFor="meetingStart">회의 시작</TextDiv>
-          </UpdateDiv>
-          <UpdateDiv>
-            <TimeSelect
+          </UpdateModalStyle.UpdateDiv>
+          <UpdateModalStyle.UpdateDiv>
+            <UpdateModalStyle.TextDiv htmlFor="meetingStart">
+              회의 시작
+            </UpdateModalStyle.TextDiv>
+          </UpdateModalStyle.UpdateDiv>
+          <UpdateModalStyle.UpdateDiv>
+            <UpdateModalStyle.TimeSelect
               id="hour"
               onChange={(event) => {
                 inputList.inputStartHour = event.target.value;
@@ -349,9 +204,9 @@ function UpdateModal({ setUpdateModalOpen, meetingId }) {
               {hourArr.map((hour) => (
                 <option value={hour}>{hour}</option>
               ))}
-            </TimeSelect>
+            </UpdateModalStyle.TimeSelect>
             <span> : </span>
-            <TimeSelect
+            <UpdateModalStyle.TimeSelect
               id="minute"
               onChange={(event) => {
                 inputList.inputStartMin = event.target.value;
@@ -363,8 +218,8 @@ function UpdateModal({ setUpdateModalOpen, meetingId }) {
               {minuteArr.map((min) => (
                 <option value={min}>{min}</option>
               ))}
-            </TimeSelect>
-            <TimeSelect
+            </UpdateModalStyle.TimeSelect>
+            <UpdateModalStyle.TimeSelect
               id="hour"
               onChange={(event) => {
                 inputList.inputEndHour = event.target.value;
@@ -376,9 +231,9 @@ function UpdateModal({ setUpdateModalOpen, meetingId }) {
               {hourArr.map((hour) => (
                 <option value={hour}>{hour}</option>
               ))}
-            </TimeSelect>
+            </UpdateModalStyle.TimeSelect>
             <span> : </span>
-            <TimeSelect
+            <UpdateModalStyle.TimeSelect
               id="minute"
               onChange={(event) => {
                 inputList.inputEndMin = event.target.value;
@@ -390,19 +245,23 @@ function UpdateModal({ setUpdateModalOpen, meetingId }) {
               {minuteArr.map((min) => (
                 <option value={min}>{min}</option>
               ))}
-            </TimeSelect>
-          </UpdateDiv>
-          <TextDiv>회의 내용</TextDiv>
-          <TextArea
+            </UpdateModalStyle.TimeSelect>
+          </UpdateModalStyle.UpdateDiv>
+          <UpdateModalStyle.TextDiv>회의 내용</UpdateModalStyle.TextDiv>
+          <UpdateModalStyle.TextArea
             placeholder={meetingEarlyVal.description}
             onChange={(event) => {
               inputList.inputDescription = event.target.value;
             }}
           />
-          <Btn type="submit" value="예약수정" onClick={PostList} />
-        </Form>
-      </Div>
-    </MainDiv>
+          <UpdateModalStyle.Btn
+            type="submit"
+            value="예약수정"
+            onClick={PostList}
+          />
+        </UpdateModalStyle.Form>
+      </UpdateModalStyle.Div>
+    </UpdateModalStyle.MainDiv>
   );
 }
 export default UpdateModal;

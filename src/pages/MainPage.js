@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MeetingroomList from '../components/MeetingroomList';
 import ReservationMeeting from '../components/ReservationMeeting';
-import MyMeetingHeader from '../components/MyMeetingHeader';
+import MyCalander from '../components/MyCalander';
 
 const cookie = new Cookies();
 
@@ -37,6 +37,9 @@ function MainPage() {
       <div>
         <MeetingroomList />
       </div>
+      <Div>
+        <MyCalander />
+      </Div>
       <div>
         <ReservationMeeting />
       </div>
@@ -45,7 +48,10 @@ function MainPage() {
 }
 const MainDiv = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  background-color: #f1f5f8;
+`;
+const Div = styled.div`
+  width: 100%;
 `;
 export default MainPage;

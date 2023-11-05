@@ -1,50 +1,67 @@
-import styled from 'styled-components';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import styled from 'styled-components';
+
+export const MainDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+`;
+
+export const Div = styled.div`
+  width: 600px;
+  height: 961px;
+  @media screen and (min-width: 1300px) {
+    height: 800px;
+  }
+  @media screen and (max-width: 800px) {
+    height: 400px;
+  }
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+  padding-top: 30px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+`;
 
 export const EntireDiv = styled.div`
-  width: 390px;
-  background-color: white;
-  height: 100%;
+  width: 415px;
 `;
 
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 0px 25px 20px 17px;
+  margin: 30px 25px 20px 17px;
 `;
 export const MainTitle = styled.div`
   font-size: 24px;
   font-weight: 700;
-  margin-top: 30px;
 `;
 export const Close = styled(CloseRoundedIcon)`
-  margin-top: 30px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const Form = styled.form`
   margin-left: 17px;
   margin-right: 27px;
 `;
-export const Div = styled.div`
+export const UpdateDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
-export const Input = styled.input`
-  border: 0;
-  border-bottom: 1px solid #d7e3f1;
-  width: 291px;
-  height: 60px;
-  outline: 0;
-  font-size: 18px;
-  font-weight: 500;
-  &:focus {
-    border-bottom: 2px solid #0594ff;
-  }
-`;
+
 export const Select = styled.select`
   border: 0;
   border-bottom: 1px solid #d7e3f1;
-  width: 291px;
+  width: 475px;
   height: 60px;
   outline: 0;
   font-size: 18px;
@@ -58,7 +75,7 @@ export const TimeSelect = styled.select`
   border: 0;
   border-bottom: 1px solid #d7e3f1;
   height: 60px;
-  width: 128.35px;
+  width: 110px;
   font-size: 18px;
   font-weight: 500;
   outline: 0;
@@ -69,7 +86,7 @@ export const TimeSelect = styled.select`
 export const TimeInput = styled.input`
   border: 0;
   border-bottom: 1px solid #d7e3f1;
-  width: 291px;
+  width: 458px;
   height: 60px;
   outline: 0;
   font-size: 18px;
@@ -77,10 +94,18 @@ export const TimeInput = styled.input`
   &:focus {
     border-bottom: 2px solid #0594ff;
   }
+  &::before {
+    content: attr(data-placeholder);
+    width: 100%;
+  }
+  &:focus::before,
+  :valid::before {
+    display: none;
+  }
 `;
 export const TextArea = styled.textarea`
   margin-top: 25px;
-  width: 377px;
+  width: 544px;
   height: 86px;
   border: 1px solid #d7e3f1;
   border-radius: 6px;
@@ -98,7 +123,7 @@ export const TextArea = styled.textarea`
 `;
 
 export const Btn = styled.input`
-  width: 360px;
+  width: 545px;
   height: 60px;
   background: #0594ff;
   border-radius: 10px;
@@ -115,6 +140,10 @@ export const TextDiv = styled.div`
   margin-top: 13px;
   font-size: 14px;
   font-weight: 500;
+  float: left;
+`;
+export const StartTextDiv = styled(TextDiv)`
+  margin-bottom: 20px;
 `;
 export const TextSpan = styled.span`
   color: #888888;

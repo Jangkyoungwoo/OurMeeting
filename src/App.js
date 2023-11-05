@@ -6,7 +6,6 @@ import MyMeetingList from './pages/ViewMeetPage';
 import MeetingroomList from './components/MeetingroomList';
 
 const AppDiv = styled.div`
-  height: 100%;
   width: 100%;
 `;
 
