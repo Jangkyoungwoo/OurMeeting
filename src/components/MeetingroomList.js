@@ -12,6 +12,7 @@ function MeetingroomList() {
   const [fav, setFav] = useState([]);
   const [nonFav, setNonFav] = useState([]);
   const [isClick, setIsClick] = useState(false);
+  const [name, setName] = useState('');
   const navigate = useNavigate();
   const getMeetingroom = async () => {
     try {
@@ -23,6 +24,7 @@ function MeetingroomList() {
       });
       setFav(res.data.fav);
       setNonFav(res.data.nonFav);
+      console.log(res.data.fav);
     } catch (error) {
       console.log(error);
     }
@@ -59,6 +61,11 @@ function MeetingroomList() {
       navigate('/mymeeting');
     }
   };
+  const handleClickMeetingRoom = (event) => {
+    const { id } = event.currentTarget;
+    const res = fav.filter((data) => data.id === Number(id));
+    console.log(res[0].name);
+  };
 
   useEffect(() => {
     getMeetingroom();
@@ -77,7 +84,7 @@ function MeetingroomList() {
       </MeetingroomListStyle.ViewMeetingBtn>
       <MeetingroomListStyle.Title>자주 찾는 회의실</MeetingroomListStyle.Title>
       {fav.map((meetingroom) => (
-        <MeetingroomListStyle.Element key={meetingroom.id}>
+        <MeetingroomListStyle.Element key={meetingroom.id} id={meetingroom.id}>
           <MeetingroomListStyle.ElementChild1>
             <IconButton id={meetingroom.id} onClick={handleBtn} disableRipple>
               <MeetingroomListStyle.FavBtn />

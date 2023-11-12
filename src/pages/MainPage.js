@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import MeetingroomList from '../components/MeetingroomList';
 import ReservationMeeting from '../components/ReservationMeeting';
 import MyCalander from '../components/MyCalander';
+import * as ViewMeetPageStyle from '../style/ViewMeetingPage.styles';
+import CalendarHeader from '../components/CalendarHeader';
 
 const cookie = new Cookies();
 
@@ -34,15 +36,25 @@ function MainPage() {
   }, []);
   return (
     <MainDiv>
-      <div>
-        <MeetingroomList />
-      </div>
+      {reserveButton ? (
+        ''
+      ) : (
+        <div>
+          <MeetingroomList />
+        </div>
+      )}
+
       <Div>
-        <MyCalander />
+        <ViewMeetPageStyle.MeetingHeaderDiv>
+          <CalendarHeader setModalOpen={setModalOpen} modalOpen={modalOpen} />
+        </ViewMeetPageStyle.MeetingHeaderDiv>
+        <MyCalander setReserveButton={setReserveButton} />
       </Div>
-      <div>
-        <ReservationMeeting />
-      </div>
+      {reserveButton && (
+        <div>
+          <ReservationMeeting />
+        </div>
+      )}
     </MainDiv>
   );
 }

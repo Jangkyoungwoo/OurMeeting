@@ -90,7 +90,6 @@ function ReservationMeeting() {
         <ReservationMeetingStyle.MainTitle>
           예약하기
         </ReservationMeetingStyle.MainTitle>
-        <ReservationMeetingStyle.Close />
       </ReservationMeetingStyle.Header>
       <ReservationMeetingStyle.Form>
         <ReservationMeetingStyle.Div>

@@ -95,7 +95,7 @@ function MyMeetingList({ setModalOpen, modalOpen }) {
   return (
     <HeaderMainDiv>
       <HeaderDiv ref={outside} onClick={handleClickOutside}>
-        <p>내 회의 보기</p>
+        <p>예약현황</p>
         <ColorSpan>
           <ColorSpanType>
             <ColorDiv color="#17C2E0" />

@@ -6,22 +6,18 @@ export const MainDiv = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0);
   z-index: 10;
   position: fixed;
   top: 0;
   left: 0;
+  overflow-y: auto; /* 스크롤바를 만들기 위한 속성 */
 `;
 
 export const Div = styled.div`
   width: 600px;
-  height: 961px;
-  @media screen and (min-width: 1300px) {
-    height: 800px;
-  }
-  @media screen and (max-width: 800px) {
-    height: 400px;
-  }
+  height: 100%;
   background-color: white;
   border-radius: 10px;
   text-align: center;
